@@ -9,13 +9,9 @@ export const metadata: Metadata = {
   description: "App de download de musicas e videos do youtube",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body className={roboto.className}>{children}</body>
     </html>
   );
