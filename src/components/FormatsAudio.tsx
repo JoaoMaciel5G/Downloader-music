@@ -2,7 +2,7 @@ import { InfoFormats } from "@/app/types/infoFormatsState";
 import { Music4 } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
-export default function Formats({info, setValueSelect}: {info: InfoFormats | undefined, setValueSelect: Dispatch<SetStateAction<string | undefined>>}){
+export default function FormatsAudio({info, setValueSelect}: {info: InfoFormats | undefined, setValueSelect: Dispatch<SetStateAction<string | undefined>>}){
     return (
         <div>
             <div className="my-4">

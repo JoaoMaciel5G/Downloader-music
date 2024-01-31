@@ -2,14 +2,15 @@
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Search, Video, Download} from "lucide-react"
+import { Search, Download} from "lucide-react"
 import { useRef, useState } from "react"
 import Spin from "@/components/spin"
 import { handleDownloadArchive } from "./functions/handleDownloadArchive"
 import { InfoFormats } from "./types/infoFormatsState"
 import { handleFormatButtonSearch } from "./functions/handleFormatButtonSearch"
 import Title from "@/components/Title"
-import Formats from "@/components/FormatsAudio"
+import FormatsAudio from "@/components/FormatsAudio"
+import FormatsVideo from "@/components/FormatsVideo"
 
 export default function Home() {
   const valueInput = useRef<HTMLInputElement | undefined>()
@@ -30,33 +31,8 @@ export default function Home() {
         <h2 className="text-xl font-semibold">{info?.title}</h2>
       </div>
       <div>
-        <Formats info={info} setValueSelect={setValueSelect}/>
-        <div>
-          <div className="my-4">
-            <h2 className="text-xl font-semibold">Videos</h2> 
-          </div>
-          <div>
-          {
-            info && info.videoFormats.map((item, index)=>(
-              <div key={index} className="flex justify-between h-10 px-2 py-6 hover:bg-zinc-600 hover:bg-opacity-40 rounded-md">
-                <div className="flex gap-x-3 items-center">
-                  <Video size={30}/>
-                  <p>({item.format})</p>
-                </div>
-                <div className=" flex items-center">
-                  <input
-                    type="radio"
-                    className="h-7 w-7 rounded-full flex items-center justify-center border-2 border-zinc-950 appearance-none cursor-pointer position-relative before:content-[''] before:absolute before:h-4 before:w-4 before:rounded-full before:bg-zinc-950 before:opacity-0 checked:before:opacity-100"
-                    value={`video ${item.format}`}
-                    name="group"
-                    onChange={(e)=>setValueSelect(e.target.value)}
-                  />
-                </div>
-              </div>
-            ))
-          }
-          </div>
-        </div>
+        <FormatsAudio info={info} setValueSelect={setValueSelect}/>
+        <FormatsVideo info={info} setValueSelect={setValueSelect}/>
         <div className="w-full mt-4">
          <Button size={"lg"} className="flex items-center gap2 py-4 w-full" onClick={()=>handleDownloadArchive(valueInput?.current?.value, info?.title, audioOrVideoFormat, videoFormatArchive)}><Download size={18}/>Download</Button> 
         </div>
