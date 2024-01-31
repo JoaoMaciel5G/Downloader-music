@@ -6,20 +6,8 @@ import { Search, Video, Music4, Download} from "lucide-react"
 import { useRef, useState } from "react"
 import Spin from "@/components/spin"
 import { handleDownloadArchive } from "./functions/handleDownloadArchive"
-
-interface InfoFormats {
-  audioFormats: [
-    {
-      format: string;
-    }
-  ],
-  videoFormats: [
-    {
-      format: string
-    }
-  ],
-  title: string
-}
+import { InfoFormats } from "./types/infoFormatsState"
+import { handleFormatButtonSearch } from "./functions/handleFormatButtonSearch"
 
 export default function Home() {
   const valueInput = useRef<HTMLInputElement | undefined>()
@@ -28,23 +16,6 @@ export default function Home() {
   const audioOrVideoFormat = valueSelect?.includes("kbps") ? Number(valueSelect.split(" ")[0]) : valueSelect?.includes("video") ? valueSelect.split(" ")[1]  : ""
   const [loading, setLoading] = useState<boolean>(false)
   const [info, setInfo] = useState<InfoFormats>()
-  
-  async function handleFormatButtonSearch(url: string | undefined) {
-    setLoading(true)
-    const response = await fetch("http://localhost:4000/getAudioFormats", {
-      method: "POST",
-      body: JSON.stringify({
-        "url_video": url
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-
-    const data = await response.json()
-    setInfo(data)
-    setLoading(false)
-  }
 
   return (
     <main className="mt-20 mx-4 space-y-8">
@@ -53,7 +24,7 @@ export default function Home() {
       </div>
       <div className="flex gap-3">
         <Input placeholder="URL" ref={valueInput}/>
-        <Button size={"lg"}  onClick={()=> handleFormatButtonSearch(valueInput?.current?.value)}>{loading ? <Spin/> : <span className="flex items-center gap-2"><Search size={18}/>Pesquisar</span>}</Button>
+        <Button size={"lg"}  onClick={()=> handleFormatButtonSearch(valueInput?.current?.value, setLoading, setInfo)}>{loading ? <Spin/> : <span className="flex items-center gap-2"><Search size={18}/>Pesquisar</span>}</Button>
       </div>
       <div>
         <h2 className="text-xl font-semibold">{info?.title}</h2>
