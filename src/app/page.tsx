@@ -18,14 +18,17 @@ export default function Home() {
   const videoFormatArchive = valueSelect?.split(" ")[0]
   const audioOrVideoFormat = valueSelect?.includes("kbps") ? Number(valueSelect.split(" ")[0]) : valueSelect?.includes("video") ? valueSelect.split(" ")[1]  : ""
   const [loading, setLoading] = useState<boolean>(false)
+  const [erro, setErro] = useState<string | boolean | undefined>(false)
   const [info, setInfo] = useState<InfoFormats>()
 
   return (
     <main className="mt-20 mx-4 space-y-8">
       <Title/>
-      <div className="flex gap-3">
-        <Input placeholder="URL" ref={valueInput}/>
+      <div>
+        <div className="flex gap-3">
+          <Input placeholder="URL" ref={valueInput} />
         <Button size={"lg"}  onClick={() => handleFormatButtonSearch(valueInput?.current?.value, setLoading, setInfo)}>{loading ? <Spin/> : <span className="flex items-center gap-2"><Search size={18}/>Pesquisar</span>}</Button>
+        </div>
       </div>
       <div>
         <h2 className="text-xl font-semibold">{info?.title}</h2>
@@ -34,7 +37,7 @@ export default function Home() {
         <FormatsAudio info={info} setValueSelect={setValueSelect}/>
         <FormatsVideo info={info} setValueSelect={setValueSelect}/>
         <div className="w-full mt-4">
-         <Button size={"lg"} className="flex items-center gap2 py-4 w-full" onClick={()=>handleDownloadArchive(valueInput?.current?.value, info?.title, audioOrVideoFormat, videoFormatArchive)}><Download size={18}/>Download</Button> 
+          <Button size={"lg"} className="flex items-center gap2 py-4 w-full" onClick={()=>handleDownloadArchive(valueInput?.current?.value, info?.title, audioOrVideoFormat, videoFormatArchive)}><Download size={18}/>Download</Button> 
         </div>
       </div>
     </main>

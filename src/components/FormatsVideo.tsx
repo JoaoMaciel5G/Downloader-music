@@ -10,7 +10,7 @@ export default function FormatsVideo({info, setValueSelect}: {info: InfoFormats 
           </div>
           <div>
           {
-            info && info.videoFormats.map((item, index)=>(
+            info?.videoFormats.map((item, index)=>(
               <div key={index} className="flex justify-between h-10 px-2 py-6 hover:bg-zinc-600 hover:bg-opacity-40 rounded-md">
                 <div className="flex gap-x-3 items-center">
                   <Video size={30}/>

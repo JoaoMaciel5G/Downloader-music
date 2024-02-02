@@ -9,7 +9,7 @@ export default function FormatsAudio({info, setValueSelect}: {info: InfoFormats 
                 <h2 className="text-xl font-semibold">Música</h2> 
             </div>
             {
-                info && info.audioFormats.map((item, index)=>(
+                info?.audioFormats.map((item, index)=>(
                     <div key={index} className="flex justify-between h-10 px-2 py-6 hover:bg-zinc-600 hover:bg-opacity-40 rounded-md">
                         <div className="flex gap-x-3 items-center">
                         <Music4 size={30}/>
