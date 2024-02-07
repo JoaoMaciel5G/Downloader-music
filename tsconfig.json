@@ -5,8 +5,9 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
-    "esModuleInterop": true,
     "module": "esnext",
+    "allowSyntheticDefaultImports": true,             /* Allow 'import x from y' when a module doesn't have a default export. */
+    "esModuleInterop": true,  
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
