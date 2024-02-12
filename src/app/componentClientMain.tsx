@@ -24,9 +24,11 @@ export default function HomeClientComponent() {
     <section className="mt-20 mx-4 space-y-8">
       <Title/>
       <div>
-        <div className="flex gap-3" >
+        <div className="gap-3 flex" >
             <Input placeholder="URL" ref={valueInput}/>
-            <Button size={"lg"} onClick={() => handleFormatButtonSearch(valueInput?.current?.value, setLoading, setInfo)}>{loading ? <Spin/> : <span className="flex items-center gap-2"><Search size={18}/>Pesquisar</span>}</Button>
+            <Button size={"lg"} onClick={() => handleFormatButtonSearch(valueInput?.current?.value, setLoading, setInfo)}>
+              {loading ? <Spin/> : <><Search size={18}/><span className="hidden items-center mx-2 sm:flex">Pesquisar</span></>}
+            </Button>
         </div>
       </div>
       <div>
