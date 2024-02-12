@@ -1,5 +1,11 @@
-export async function handleDownloadArchive(url: string | undefined, title: string | undefined, quality: string | number, formatArchive?: string) {
-    const response = await fetch(`/api/downloadArchive`, {
+export async function handleDownloadArchive(
+  url: string | undefined,
+  title: string | undefined,
+  quality: string | number,
+  formatArchive?: string
+) {
+    const url_api = process.env.NEXT_PUBLIC_URL_API
+    const response = await fetch(`${url_api}/download`, {
       method: "POST",
       body: JSON.stringify({
         "url_video": url,

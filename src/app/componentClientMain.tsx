@@ -25,7 +25,7 @@ export default function HomeClientComponent() {
       <Title/>
       <div>
         <div className="flex gap-3" >
-            <Input placeholder="URL" ref={valueInput} />
+            <Input placeholder="URL" ref={valueInput}/>
             <Button size={"lg"} onClick={() => handleFormatButtonSearch(valueInput?.current?.value, setLoading, setInfo)}>{loading ? <Spin/> : <span className="flex items-center gap-2"><Search size={18}/>Pesquisar</span>}</Button>
         </div>
       </div>
