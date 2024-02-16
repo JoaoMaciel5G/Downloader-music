@@ -21,17 +21,17 @@ export default function HomeClientComponent() {
   const [loading, setLoading] = useState<boolean>(false)
 
   return (
-    <section className="mt-20 mx-4 space-y-8">
+    <section className="mt-20 mx-40 space-y-8">
       <Title/>
       <div>
-        <div className="gap-3 flex" >
+        <div className="gap-3 flex items-center justify-center mt-20">
             <Input placeholder="URL" ref={valueInput}/>
             <Button size={"lg"} onClick={() => handleFormatButtonSearch(valueInput?.current?.value, setLoading, setInfo)}>
               {loading ? <Spin/> : <><Search size={18}/><span className="hidden items-center mx-2 sm:flex">Pesquisar</span></>}
             </Button>
         </div>
       </div>
-      <div>
+      <div className="mx-72">
         <h2 className="text-xl font-semibold">{info?.title}</h2>
       </div>
       <div>
