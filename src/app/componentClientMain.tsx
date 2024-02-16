@@ -35,11 +35,27 @@ export default function HomeClientComponent() {
         <h2 className="text-xl font-semibold">{info?.title}</h2>
       </div>
       <div>
-        <FormatsAudio info={info} setValueSelect={setValueSelect}/>
-        <FormatsVideo info={info} setValueSelect={setValueSelect}/>
-        <div className="w-full my-4">
-          <Button size={"lg"} className="flex items-center gap2 py-4 w-full" onClick={()=>handleDownloadArchive(valueInput?.current?.value, info?.title, audioOrVideoFormat, videoFormatArchive)}><Download size={18}/>Download</Button> 
-        </div>
+        {
+          info && (
+            <>
+              <FormatsAudio info={info} setValueSelect={setValueSelect}/>
+              <FormatsVideo info={info} setValueSelect={setValueSelect}/>
+            </>
+            
+          )
+        }
+      </div>
+      <div className="flex flex-col items-center">
+        {
+          info && (
+            <>
+              <div className="w-full md:w-1/2 my-4">
+                <Button size={"lg"} className="flex items-center gap2 py-4 w-full" onClick={()=>handleDownloadArchive(valueInput?.current?.value, info?.title, audioOrVideoFormat, videoFormatArchive)}><Download size={18}/>Download</Button> 
+              </div>
+            </>
+          )
+        } 
+        
       </div>
     </section>
   );
