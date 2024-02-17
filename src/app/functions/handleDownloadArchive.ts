@@ -1,10 +1,15 @@
+import { Dispatch, SetStateAction } from "react";
+
 export async function handleDownloadArchive(
   url: string | undefined,
   title: string | undefined,
   quality: string | number,
+  setLoadingDownload:  Dispatch<SetStateAction<boolean>>,
   formatArchive?: string
 ) {
+    setLoadingDownload(true)
     const url_api = process.env.NEXT_PUBLIC_URL_API
+    
     const response = await fetch(`${url_api}/download`, {
       method: "POST",
       body: JSON.stringify({
@@ -17,11 +22,13 @@ export async function handleDownloadArchive(
       }
     })
     const data = await response.blob()
+    
     const urlBlob = URL.createObjectURL(data)
     const a = document.createElement('a');
     a.href = urlBlob;
     a.download = `${title}.${formatArchive == "video" ? "mp4" : "mp3"}`
-    document.body.appendChild(a);
+    document.body.appendChild(a)
     a.click();
+    setLoadingDownload(false)
     document.body.removeChild(a);
 }

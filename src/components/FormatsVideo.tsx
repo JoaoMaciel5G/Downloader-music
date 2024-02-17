@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction } from "react";
 
 export default function FormatsVideo({info, setValueSelect}: {info: InfoFormats | undefined, setValueSelect: Dispatch<SetStateAction<string | undefined>>}){
     return(
-        <div className="mx-80">
+        <div className="2xl:mx-80">
           <div className="my-4">
             <h2 className="text-xl font-semibold">Videos</h2> 
           </div>
